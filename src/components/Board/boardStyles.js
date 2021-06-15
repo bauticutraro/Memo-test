@@ -50,9 +50,18 @@ export const S_BoardItemContainer = styled.div`
   height: var(--card-size);
   perspective: 1500px;
 
-  :hover ${S_BoardItemSubcontainer} {
-    transform: rotateY(180deg);
-  }
+  ${({ show }) =>
+    show &&
+    css`
+      ${S_BoardItemSubcontainer} {
+        transform: rotateY(180deg);
+      }
+    `}
+  ${({ isClickable }) =>
+    isClickable &&
+    css`
+      cursor: pointer;
+    `}
 `;
 
 // hidden image in the back side
