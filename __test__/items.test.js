@@ -1,9 +1,9 @@
-import { boardItems } from '../src/utils/boardItems';
+import { getItems } from '../src/utils/boardItems';
 import { compareItems } from '../src/utils/compareItems';
 
 describe('board items', () => {
   test('should be 20 items', () => {
-    expect(boardItems?.length).toBe(20);
+    expect(getItems()?.length).toBe(20);
   });
 });
 describe('board items comparison', () => {

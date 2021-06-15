@@ -1,11 +1,12 @@
 import React from 'react';
 import Board from '../../components/Board/Board';
+import { S_Container } from './homeStyles';
 
 const Home = () => {
   return (
-    <div>
+    <S_Container>
       <Board />
-    </div>
+    </S_Container>
   );
 };
 

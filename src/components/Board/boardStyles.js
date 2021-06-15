@@ -5,26 +5,27 @@ export const S_BoardContainer = styled.div`
 
   display: grid;
   grid-template-columns: repeat(4, var(--card-size));
-  /* background: red; */
 
   width: fit-content;
-  margin: 10rem auto;
+  margin: 3rem auto;
   grid-gap: 1rem;
 `;
 
+// item side
 const boardItemSide = css`
   position: absolute;
   width: 100%;
   height: 100%;
   backface-visibility: hidden;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
 
   display: flex;
   justify-content: center;
   align-items: center;
 
-  border-radius: 0.5rem;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
   padding: 1rem;
+  background-color: var(--light);
 `;
 
 export const S_BoardItemFront = styled.div`
@@ -36,31 +37,45 @@ export const S_BoardItemBack = styled.div`
   transform: rotateY(180deg);
 `;
 
-export const S_BoardItemSubcontainer = styled.div`
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transition: transform 0.6s;
-  transform-style: preserve-3d;
-`;
-
+// item containers
 export const S_BoardItemContainer = styled.div`
   background-color: transparent;
   width: var(--card-size);
   height: var(--card-size);
   perspective: 1500px;
+  transition: all 0.5s ease;
+  border-radius: 0.5rem;
+
+  ${({ isClickable, reset }) =>
+    reset
+      ? css`
+          transform: scale(0);
+          transition-delay: 0.5s;
+        `
+      : isClickable &&
+        css`
+          cursor: pointer;
+          :hover {
+            transform: scale(1.05);
+
+            ${S_BoardItemFront}, ${S_BoardItemBack} {
+              box-shadow: 0 3px 16px rgba(0, 0, 0, 0.15);
+            }
+          }
+        `}
+`;
+
+export const S_BoardItemSubcontainer = styled.div`
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.5s;
+  transform-style: preserve-3d;
 
   ${({ show }) =>
     show &&
     css`
-      ${S_BoardItemSubcontainer} {
-        transform: rotateY(180deg);
-      }
-    `}
-  ${({ isClickable }) =>
-    isClickable &&
-    css`
-      cursor: pointer;
+      transform: rotateY(180deg);
     `}
 `;
 
@@ -68,3 +83,5 @@ export const S_BoardItemContainer = styled.div`
 export const S_BoardItemImage = styled.img`
   width: 100%;
 `;
+
+export const ButtonContainer = styled.div``;

@@ -7,7 +7,14 @@ import {
   S_BoardItemImage
 } from './boardStyles';
 
-const BoardItem = ({ id, src, setItem, guessed, selectedItemsLength }) => {
+const BoardItem = ({
+  id,
+  src,
+  setItem,
+  guessed,
+  selectedItemsLength,
+  reset
+}) => {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
@@ -29,10 +36,10 @@ const BoardItem = ({ id, src, setItem, guessed, selectedItemsLength }) => {
   return (
     <S_BoardItemContainer
       onClick={handleOnClick}
-      show={guessed || show}
       isClickable={isClickable}
+      reset={reset}
     >
-      <S_BoardItemSubcontainer>
+      <S_BoardItemSubcontainer show={guessed || show}>
         <S_BoardItemFront></S_BoardItemFront>
         <S_BoardItemBack>
           <S_BoardItemImage src={src} />

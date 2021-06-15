@@ -22,10 +22,8 @@ const shuffleArray = array => {
   return newArray;
 };
 
-const getItems = () => {
+export const getItems = () => {
   const itemsToSort = [...ITEMS, ...ITEMS];
 
   return shuffleArray(itemsToSort);
 };
-
-export const boardItems = getItems();
