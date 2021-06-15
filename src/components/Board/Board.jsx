@@ -31,15 +31,37 @@ const Board = () => {
   const [guessedArticles, setGuessedArticles] = useState([]);
   const [boardItems, setBoardItems] = useState([]);
   const [reset, setReset] = useState(false);
+  const [time, setTime] = useState(20);
 
   // get items for first time
   useEffect(() => {
     getShuffleItems();
   }, []);
 
+  // time
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime(time - 1);
+    }, 1000);
+    return function cleanup() {
+      clearInterval(interval);
+    };
+  }, [setTime, time]);
+
+  useEffect(() => {
+    if (!time) {
+      setSelectedItems([]);
+      setTime(20);
+    }
+  }, [time, setSelectedItems]);
+
+  const resetTime = useCallback(() => setTime(20), [setTime]);
+
   // compare items when there are 2
   useEffect(() => {
     if (Array.isArray(selectedItems) && selectedItems.length === 2) {
+      resetTime();
+
       if (compareItems(selectedItems)) {
         setGuessedArticles([...guessedArticles, selectedItems[0]]); // if they are the same, save it on guessedArticles
         setSelectedItems([]); // clean selected items
@@ -65,6 +87,7 @@ const Board = () => {
 
   // reset game
   const handleResetGame = useCallback(() => {
+    resetTime();
     setSelectedItems([]);
     setGuessedArticles([]);
     setReset(true);
@@ -76,6 +99,7 @@ const Board = () => {
 
   return (
     <>
+      <p>{time}</p>
       <S_BoardContainer>
         {boardItems.map((item, i) => {
           const guessed = guessedArticles.some(({ id }) => id === item.id);
