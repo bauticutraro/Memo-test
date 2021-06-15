@@ -84,4 +84,10 @@ export const S_BoardItemImage = styled.img`
   width: 100%;
 `;
 
-export const ButtonContainer = styled.div``;
+export const S_ButtonContainer = styled.div``;
+
+export const S_TimeText = styled.p`
+  font-size: 2rem;
+  color: var(--dark);
+  margin-top: 2rem;
+`;

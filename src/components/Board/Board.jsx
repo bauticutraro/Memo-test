@@ -5,7 +5,7 @@ import BoardItem from './BoardItem';
 import { getItems } from '../../utils/boardItems';
 import { compareItems } from '../../utils/compareItems';
 // styles
-import { S_BoardContainer } from './boardStyles';
+import { S_BoardContainer, S_TimeText } from './boardStyles';
 import { Button } from '../Button/buttonStyles';
 
 // const players = [
@@ -99,7 +99,7 @@ const Board = () => {
 
   return (
     <>
-      <p>{time}</p>
+      <S_TimeText>00:{time < 10 ? `0${time}` : time}</S_TimeText>
       <S_BoardContainer>
         {boardItems.map((item, i) => {
           const guessed = guessedArticles.some(({ id }) => id === item.id);
