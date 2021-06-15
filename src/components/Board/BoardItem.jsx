@@ -3,15 +3,18 @@ import {
   S_BoardItemBack,
   S_BoardItemContainer,
   S_BoardItemSubcontainer,
-  S_BoardItemFront
+  S_BoardItemFront,
+  S_BoardItemImage
 } from './boardStyles';
 
-const BoardItem = () => {
+const BoardItem = ({ id, src }) => {
   return (
     <S_BoardItemContainer>
       <S_BoardItemSubcontainer>
-        <S_BoardItemFront>adelante</S_BoardItemFront>
-        <S_BoardItemBack>atras</S_BoardItemBack>
+        <S_BoardItemFront></S_BoardItemFront>
+        <S_BoardItemBack>
+          <S_BoardItemImage src={src} />
+        </S_BoardItemBack>
       </S_BoardItemSubcontainer>
     </S_BoardItemContainer>
   );
