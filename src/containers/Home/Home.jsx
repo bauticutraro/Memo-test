@@ -36,7 +36,10 @@ const Home = () => {
           setGuessedArticles={setGuessedArticles}
         />
       ) : (
-        <Button onClick={() => setIsGameStarted(true)}>START GAME</Button>
+        <>
+          <S_FinalResultText>MEMO TEST GAME</S_FinalResultText>
+          <Button onClick={() => setIsGameStarted(true)}>START GAME</Button>
+        </>
       )}
     </S_Container>
   );
