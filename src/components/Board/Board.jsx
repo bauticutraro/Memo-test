@@ -11,7 +11,7 @@ import useTime from '../../hooks/useTime';
 import useTurn from '../../hooks/useTurn';
 import Players from '../Players/Players';
 
-const players = [
+export const players = [
   { id: 1, name: 'Player 1', color: 'var(--info)' },
   { id: 2, name: 'Player 2', color: 'var(--danger)' }
 ];
@@ -89,6 +89,8 @@ const Board = () => {
       setReset(false);
     }, 1000);
   }, [setSelectedItems, setGuessedArticles, setReset, getShuffleItems]);
+
+  console.log(guessedArticles);
 
   return (
     <>
