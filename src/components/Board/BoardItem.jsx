@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { memo, useCallback, useEffect, useMemo, useState } from 'react';
 import {
   S_BoardItemBack,
   S_BoardItemContainer,
@@ -13,7 +13,8 @@ const BoardItem = ({
   setItem,
   guessed,
   selectedItemsLength,
-  reset
+  reset,
+  color
 }) => {
   const [show, setShow] = useState(false);
 
@@ -41,7 +42,7 @@ const BoardItem = ({
     >
       <S_BoardItemSubcontainer show={guessed || show}>
         <S_BoardItemFront></S_BoardItemFront>
-        <S_BoardItemBack>
+        <S_BoardItemBack color={color}>
           <S_BoardItemImage src={src} />
         </S_BoardItemBack>
       </S_BoardItemSubcontainer>
@@ -49,4 +50,4 @@ const BoardItem = ({
   );
 };
 
-export default BoardItem;
+export default memo(BoardItem);

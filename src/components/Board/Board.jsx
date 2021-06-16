@@ -7,69 +7,58 @@ import { compareItems } from '../../utils/compareItems';
 // styles
 import { S_BoardContainer, S_TimeText } from './boardStyles';
 import { Button } from '../Button/buttonStyles';
+import useTime from '../../hooks/useTime';
+import useTurn from '../../hooks/useTurn';
+import Players from '../Players/Players';
 
-// const players = [
-//   { id: 1, name: 'Player 1', color: 'orange' },
-//   { id: 2, name: 'Player 2', color: 'green' }
-// ];
-
-// const initialState = { points: 0 };
+const players = [
+  { id: 1, name: 'Player 1', color: 'var(--info)' },
+  { id: 2, name: 'Player 2', color: 'var(--danger)' }
+];
 
 const Board = () => {
-  // const playerOne = useState({
-  //   ...players[0],
-  //   ...initialState,
-  //   isActiveTurn: true
-  // });
-  // const playerTwo = useState({
-  //   ...players[1],
-  //   ...initialState,
-  //   isActiveTurn: false
-  // });
-
+  const [boardItems, setBoardItems] = useState([]);
   const [selectedItems, setSelectedItems] = useState([]);
   const [guessedArticles, setGuessedArticles] = useState([]);
-  const [boardItems, setBoardItems] = useState([]);
   const [reset, setReset] = useState(false);
-  const [time, setTime] = useState(20);
+  const [activeTurn, toggleTurn] = useTurn(players[0].id, players);
+  const [time, resetTime] = useTime(20);
 
   // get items for first time
   useEffect(() => {
     getShuffleItems();
   }, []);
 
-  // time
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setTime(time - 1);
-    }, 1000);
-    return function cleanup() {
-      clearInterval(interval);
-    };
-  }, [setTime, time]);
+  const handleChangeTurn = useCallback(
+    (samePlayer, delay) => {
+      delay
+        ? setTimeout(() => setSelectedItems([]), delay)
+        : setSelectedItems([]); // clean selected items after show both of them
+      !samePlayer && toggleTurn();
+      resetTime();
+    },
+    [setSelectedItems, toggleTurn, resetTime]
+  );
 
   useEffect(() => {
-    if (!time) {
-      setSelectedItems([]);
-      setTime(20);
-    }
-  }, [time, setSelectedItems]);
-
-  const resetTime = useCallback(() => setTime(20), [setTime]);
+    if (!time) handleChangeTurn();
+  }, [time, handleChangeTurn]);
 
   // compare items when there are 2
   useEffect(() => {
     if (Array.isArray(selectedItems) && selectedItems.length === 2) {
-      resetTime();
-
       if (compareItems(selectedItems)) {
-        setGuessedArticles([...guessedArticles, selectedItems[0]]); // if they are the same, save it on guessedArticles
-        setSelectedItems([]); // clean selected items
+        const playerItem = {
+          ...selectedItems[0],
+          player: players.filter(({ id }) => id === activeTurn)[0]
+        };
+        setGuessedArticles([...guessedArticles, playerItem]); // if they are the same, save it on guessedArticles
+        handleChangeTurn(true);
       } else {
-        setTimeout(() => setSelectedItems([]), 1000); // clean selected items
+        handleChangeTurn(false, 1000);
       }
     }
-  }, [selectedItems, compareItems, setGuessedArticles]);
+  }, [selectedItems, compareItems, guessedArticles, setGuessedArticles]);
 
   // set selected item
   const setItem = useCallback(
@@ -100,16 +89,25 @@ const Board = () => {
   return (
     <>
       <S_TimeText>00:{time < 10 ? `0${time}` : time}</S_TimeText>
+
+      <Players
+        players={players}
+        activeTurn={activeTurn}
+        guessedArticles={guessedArticles}
+      />
+
       <S_BoardContainer>
         {boardItems.map((item, i) => {
-          const guessed = guessedArticles.some(({ id }) => id === item.id);
+          const guessed = guessedArticles.filter(({ id }) => id === item.id);
+
           return (
             <BoardItem
               key={i}
               {...item}
               setItem={() => setItem(item)}
               selectedItemsLength={selectedItems.length}
-              guessed={guessed}
+              guessed={guessed.length}
+              color={guessed?.length && guessed[0]?.player?.color}
               reset={reset}
             />
           );

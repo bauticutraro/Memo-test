@@ -2,10 +2,11 @@ import { getItems } from '../src/utils/boardItems';
 import { compareItems } from '../src/utils/compareItems';
 
 describe('board items', () => {
-  test('should be 20 items', () => {
+  test('should have 20 items', () => {
     expect(getItems()?.length).toBe(20);
   });
 });
+
 describe('board items comparison', () => {
   test('should be eqaul', () => {
     const compareItemsResult = compareItems([

@@ -35,6 +35,12 @@ export const S_BoardItemFront = styled.div`
 export const S_BoardItemBack = styled.div`
   ${boardItemSide};
   transform: rotateY(180deg);
+
+  ${({ color }) =>
+    color &&
+    css`
+      border: 4px solid ${color};
+    `}
 `;
 
 // item containers
@@ -82,6 +88,7 @@ export const S_BoardItemSubcontainer = styled.div`
 // hidden image in the back side
 export const S_BoardItemImage = styled.img`
   width: 100%;
+  user-select: none;
 `;
 
 export const S_ButtonContainer = styled.div``;
