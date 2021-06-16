@@ -10,16 +10,16 @@ import { Button } from '../Button/buttonStyles';
 import useTime from '../../hooks/useTime';
 import useTurn from '../../hooks/useTurn';
 import Players from '../Players/Players';
+import { getFinalResult } from '../../utils/getFinalResult';
 
 export const players = [
   { id: 1, name: 'Player 1', color: 'var(--info)' },
   { id: 2, name: 'Player 2', color: 'var(--danger)' }
 ];
 
-const Board = () => {
+const Board = ({ guessedArticles, setGuessedArticles }) => {
   const [boardItems, setBoardItems] = useState([]);
   const [selectedItems, setSelectedItems] = useState([]);
-  const [guessedArticles, setGuessedArticles] = useState([]);
   const [reset, setReset] = useState(false);
   const [activeTurn, toggleTurn, resetInitialTurn] = useTurn(
     players[0].id,
@@ -56,9 +56,9 @@ const Board = () => {
           player: players.filter(({ id }) => id === activeTurn)[0]
         };
         setGuessedArticles([...guessedArticles, playerItem]); // if they are the same, save it on guessedArticles
-        handleChangeTurn(true);
+        handleChangeTurn(true); // re-start the same player turn
       } else {
-        handleChangeTurn(false, 1000);
+        handleChangeTurn(false, 1000); // change player turn
       }
     }
   }, [selectedItems, compareItems, guessedArticles, setGuessedArticles]);
@@ -89,8 +89,6 @@ const Board = () => {
       setReset(false);
     }, 1000);
   }, [setSelectedItems, setGuessedArticles, setReset, getShuffleItems]);
-
-  console.log(guessedArticles);
 
   return (
     <>

@@ -170,4 +170,14 @@ describe('final result', () => {
     expect(getFinalResult(guessedItems)?.title).toBe('Tie');
     expect(getFinalResult(guessedItems)?.result).toBe('5 - 5');
   });
+  test('should be null', () => {
+    const guessedItems = [
+      {
+        id: 3,
+        src: 'https://restcountries.eu/data/chl.svg',
+        player: { id: 1, name: 'Player 1' }
+      }
+    ];
+    expect(getFinalResult(guessedItems)).toBeNull();
+  });
 });
