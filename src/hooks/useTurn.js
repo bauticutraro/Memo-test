@@ -13,7 +13,12 @@ function useTurn(initialPlayer, players) {
       : setActiveTurn(players[0].id);
   }, [activeTurn]);
 
-  return [activeTurn, handleChangeTurn];
+  const handleResetInitialTurn = useCallback(
+    () => setActiveTurn(initialPlayer),
+    [initialPlayer]
+  );
+
+  return [activeTurn, handleChangeTurn, handleResetInitialTurn];
 }
 
 export default useTurn;

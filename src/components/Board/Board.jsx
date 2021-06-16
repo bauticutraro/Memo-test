@@ -21,7 +21,10 @@ const Board = () => {
   const [selectedItems, setSelectedItems] = useState([]);
   const [guessedArticles, setGuessedArticles] = useState([]);
   const [reset, setReset] = useState(false);
-  const [activeTurn, toggleTurn] = useTurn(players[0].id, players);
+  const [activeTurn, toggleTurn, resetInitialTurn] = useTurn(
+    players[0].id,
+    players
+  );
   const [time, resetTime] = useTime(20);
 
   // get items for first time
@@ -80,6 +83,7 @@ const Board = () => {
     setSelectedItems([]);
     setGuessedArticles([]);
     setReset(true);
+    resetInitialTurn();
     setTimeout(() => {
       getShuffleItems();
       setReset(false);
@@ -94,6 +98,7 @@ const Board = () => {
         players={players}
         activeTurn={activeTurn}
         guessedArticles={guessedArticles}
+        time={time}
       />
 
       <S_BoardContainer>

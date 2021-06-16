@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 
-const TURN_DURATION = 10;
+export const TURN_DURATION = 5;
 
 function useTime() {
   const [time, setTime] = useState(TURN_DURATION);

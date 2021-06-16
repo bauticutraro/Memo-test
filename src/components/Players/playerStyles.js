@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components';
+import { TURN_DURATION } from '../../hooks/useTime';
 
 export const S_PlayersContainer = styled.div`
   display: flex;
@@ -21,14 +22,19 @@ export const S_PlayerItem = styled.div`
       border: 4px solid ${color};
     `}
 
-  ${({ active }) =>
-    active &&
-    css`
-      background-color: #d0d0d0;
-      * {
-        font-weight: 600;
-      }
-    `}
+  ${({ active, time }) => {
+    const percentage = (time * 100) / TURN_DURATION;
+    return (
+      active &&
+      css`
+        background-image: linear-gradient(
+          to top,
+          #33aa3377 ${percentage}%,
+          transparent ${percentage + 0.5}%
+        );
+      `
+    );
+  }}
 `;
 
 export const S_PlayerItemName = styled.p`
@@ -40,5 +46,6 @@ export const S_PlayerItemPoints = styled.p`
 `;
 
 export const S_PlayersVs = styled.p`
-  margin: 0 1rem;
+  margin: 0 2rem;
+  font-weight: 900;
 `;
