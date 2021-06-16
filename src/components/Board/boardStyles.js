@@ -5,6 +5,7 @@ export const S_BoardContainer = styled.div`
 
   display: grid;
   grid-template-columns: repeat(4, var(--card-size));
+  grid-template-rows: repeat(5, var(--card-size));
 
   width: fit-content;
   margin: 3rem auto;
