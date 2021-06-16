@@ -1,16 +1,16 @@
 import React, { useCallback, useEffect, useState } from 'react';
 // components
 import BoardItem from './BoardItem';
+import Players from '../Players/Players';
 // utils
 import { getItems } from '../../utils/boardItems';
 import { compareItems } from '../../utils/compareItems';
 // styles
 import { S_BoardContainer, S_TimeText } from './boardStyles';
 import { Button } from '../Button/buttonStyles';
+// hooks
 import useTime from '../../hooks/useTime';
 import useTurn from '../../hooks/useTurn';
-import Players from '../Players/Players';
-import { getFinalResult } from '../../utils/getFinalResult';
 
 export const players = [
   { id: 1, name: 'Player 1', color: 'var(--info)' },
