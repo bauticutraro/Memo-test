@@ -1,6 +1,6 @@
 # Memotest Challenge
 
-React app creted whit Vite.
+React app creted with Vite.
 
 ## Run
 
