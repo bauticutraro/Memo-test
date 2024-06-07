@@ -1,7 +1,7 @@
 export const ITEMS = [
   {
     id: 1,
-    src: '	https://flagcdn.com/ar.svg'
+    src: 'https://flagcdn.com/ar.svg'
   },
   {
     id: 2,
