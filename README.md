@@ -1,4 +1,4 @@
-# Aivo_Challenge
+# Memotest Challenge
 
 React app creted whit Vite.
 
