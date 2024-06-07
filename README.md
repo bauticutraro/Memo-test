@@ -9,5 +9,4 @@ yarn
 yarn start
 
 ## Website
-
-[https://memotest-theta.vercel.app/](https://memotest-theta.vercel.app/)
+[https://memotest-countries.vercel.app/](https://memotest-countries.vercel.app/)
