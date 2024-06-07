@@ -1,42 +1,42 @@
 export const ITEMS = [
   {
     id: 1,
-    src: 'https://restcountries.eu/data/arg.svg'
+    src: '	https://flagcdn.com/ar.svg'
   },
   {
     id: 2,
-    src: 'https://restcountries.eu/data/bra.svg'
+    src: 'https://flagcdn.com/br.svg'
   },
   {
     id: 3,
-    src: 'https://restcountries.eu/data/chl.svg'
+    src: 'https://flagcdn.com/cl.svg'
   },
   {
     id: 4,
-    src: 'https://restcountries.eu/data/ury.svg'
+    src: 'https://flagcdn.com/uy.svg'
   },
   {
     id: 5,
-    src: 'https://restcountries.eu/data/pry.svg'
+    src: 'https://flagcdn.com/py.svg'
   },
   {
     id: 6,
-    src: 'https://restcountries.eu/data/ven.svg'
+    src: 'https://flagcdn.com/ve.svg'
   },
   {
     id: 7,
-    src: 'https://restcountries.eu/data/col.svg'
+    src: 'https://flagcdn.com/co.svg'
   },
   {
     id: 8,
-    src: 'https://restcountries.eu/data/per.svg'
+    src: 'https://flagcdn.com/pe.svg'
   },
   {
     id: 9,
-    src: 'https://restcountries.eu/data/bol.svg'
+    src: 'https://flagcdn.com/bo.svg'
   },
   {
     id: 10,
-    src: 'https://restcountries.eu/data/ecu.svg'
+    src: 'https://flagcdn.com/ec.svg'
   }
 ];
